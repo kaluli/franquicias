@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Franchise Evaluator
 
-## Getting Started
+Web mobile-first (Next.js + TypeScript + Tailwind + Neon Postgres) para evaluar franquicias en una feria.
+Sin instalación: se usa desde el navegador mediante una URL.
 
-First, run the development server:
+## Puesta en marcha (≈5 min)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. **Neon**: en tu proyecto, abre *SQL Editor*, pega [`db/schema.sql`](db/schema.sql) y pulsa **Run**
+   (crea `franchises`, `financials`, `questions`, `answers`, `ratings`, `followups` y el catálogo de preguntas).
+2. Copia `.env.example` a `.env.local` y rellena:
+   - `DATABASE_URL`: connection string de Neon (*Connect*).
+   - `APP_PASSWORD`: la contraseña con la que entrarás a la web.
+   - `SESSION_SECRET`: genera una con `openssl rand -hex 32`.
+3. `npm install && npm run dev` → <http://localhost:3000> (entras sólo con la contraseña).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Desplegar en Vercel
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Sube el repo a GitHub → *Import project* en Vercel → añade las tres variables de entorno → Deploy.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Flujo
 
-## Learn More
+Dashboard → **⚡ Modo Feria** → Guardar → vuelve al dashboard. En casa: ranking, filtros, comparador, edición completa.
 
-To learn more about Next.js, take a look at the following resources:
+## Score
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`Score = Σ peso × estrellas/5` con pesos: Rentabilidad 20, Crecimiento 15, Independencia 15, Recurrencia 10,
+Central 10, Riesgo 15, Salida 5, Encaje 10. Si sólo has puntuado algunos criterios (Modo Feria puntúa 2),
+se normaliza sobre los pesos puntuados. Lógica en [`lib/score.ts`](lib/score.ts).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+ROI = beneficio anual ÷ inversión inicial × 100 (se puede sobrescribir a mano).
 
-## Deploy on Vercel
+## Notas
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Exportar CSV desde el dashboard; PDF vía *Imprimir → Guardar como PDF* en el detalle de cada franquicia.
+- Next.js 16: el antiguo `middleware` ahora es `proxy.ts` (protege todas las rutas salvo `/login`).
+- Los datos se leen/escriben con Server Actions (`lib/actions.ts`); la `DATABASE_URL` nunca llega al navegador.
