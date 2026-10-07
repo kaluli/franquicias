@@ -22,6 +22,12 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  touch-action: pan-y;
 }
 
 body {

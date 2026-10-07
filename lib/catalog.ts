@@ -9,6 +9,7 @@ export const CATEGORIES = [
   { value: "inmobiliario", label: "Inmobiliario", emoji: "🏠" },
   { value: "mascotas", label: "Mascotas", emoji: "🐾" },
   { value: "automocion", label: "Automoción", emoji: "🚗" },
+  { value: "vending", label: "Vending", emoji: "🥤" },
   { value: "otros", label: "Otros", emoji: "📦" },
 ] as const;
 

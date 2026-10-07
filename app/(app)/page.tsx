@@ -146,7 +146,7 @@ export default function Dashboard() {
           </Button>
         </div>
 
-        <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none]">
+        <div className="flex flex-wrap gap-2">
           <Chip active={!status} onClick={() => setStatus("")}>Todas</Chip>
           {STATUSES.map((s) => (
             <Chip key={s.value} active={status === s.value} onClick={() => setStatus(status === s.value ? "" : s.value)}>

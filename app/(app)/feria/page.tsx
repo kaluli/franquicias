@@ -73,7 +73,7 @@ export default function FeriaPage() {
       </Block>
 
       <Block n={2} title="Inversión"><NumberInput prefix="€" value={d.fin.investment} onChange={(v) => setFin("investment", v)} placeholder="80000" /></Block>
-      <Block n={3} title="Facturación"><NumberInput prefix="€" value={d.fin.revenue} onChange={(v) => setFin("revenue", v)} placeholder="250000" /></Block>
+      <Block n={3} title="Facturación anual"><NumberInput prefix="€" value={d.fin.revenue} onChange={(v) => setFin("revenue", v)} placeholder="250000" /></Block>
       <Block n={4} title="Beneficio"><NumberInput prefix="€" value={d.fin.profit} onChange={(v) => setFin("profit", v)} placeholder="42000" /></Block>
       <Block n={5} title="ROI">
         <NumberInput

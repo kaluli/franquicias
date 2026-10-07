@@ -76,7 +76,7 @@ export default function CompararPage() {
       {data.length === 0 ? (
         <Card className="p-8 text-center text-muted">Aún no hay franquicias que comparar.</Card>
       ) : (
-        <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 md:mx-0 md:flex-wrap md:px-0 [scrollbar-width:none]">
+        <div className="flex flex-wrap gap-2">
           {sorted.map((f) => (
             <Chip key={f.id} active={selected.includes(f.id)} onClick={() => toggle(f.id)}>
               {f.name} <span className="opacity-60">{f.score ?? "—"}</span>
@@ -121,7 +121,7 @@ export default function CompararPage() {
           </div>
 
           {/* Desktop: tabla */}
-          <Card className="hidden overflow-x-auto md:block">
+          <Card className="hidden overflow-hidden md:block">
             <table className="w-full text-sm">
               <thead className="border-b border-border bg-zinc-50">
                 <tr>
